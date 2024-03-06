@@ -1,15 +1,24 @@
 ﻿using System;
 using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 class Program
 {
     static void Main(string[] args)
     {
-        
         var tanks = GetTanks();
         var units = GetUnits();
         var factories = GetFactories();
+
+        for (int i = 0; i < tanks.Length; i++) 
+        { 
+            var u = FindUnit(units, tanks, tanks[i].Name);
+            var f = FindFactory(factories, u);
+            Console.WriteLine($"Tank: {tanks[i].Name}, Unit: {u.Name}, Factory {f.Name}");
+        }
+
+       
         Console.WriteLine($"Количество резервуаров: {tanks.Length}, установок: {units.Length}");
 
         var foundUnit = FindUnit(units, tanks, "reservoir 2");
@@ -19,8 +28,46 @@ class Program
 
         var totalVolume = GetTotalVolume(tanks);
         Console.WriteLine($"Общий объем резервуаров: {totalVolume}");
+
+
+
+        // Поиск резервуара по имени
+        Console.Write("Enter the name of the tank to search: ");
+        string searchName = Console.ReadLine();
+        var un = FindUnit(units, tanks, searchName);
+        if(un != null) { 
+        var fa = FindFactory(factories, un);
+        Console.WriteLine($"Tank: {searchName}, Unit: {un.Name}, Factory {fa.Name}");
+        }
+        else
+        {
+            return;
+        }
+
     }
 
+    //public void PrintAll(Tank[] tanks, Unit[] units, Factory[] factories)
+    //{
+    //    for(int i = 0; i < tanks.Length; i++)
+    //    {
+    //        for(int j = 0; i < units.Length; i++)
+    //        {
+    //            if (tanks[i].UnitId == units[j].Id)
+    //            {
+    //                for (int k = 0; i < factories.Length; i++)
+    //                {
+    //                    if (units[j].FactoryId == factories[k].Id)
+    //                    {
+    //                        Console.WriteLine($"Tank {tanks[i].Name}, unit {units[j].Name}, factory {factories[k].Name} ");
+    //                    }
+    //                }
+    //            }
+    //        }          
+    //    }
+        
+    //}
+
+    
     // реализуйте этот метод, чтобы он возвращал массив резервуаров, согласно приложенным таблицам
     // можно использовать создание объектов прямо в C# коде через new, или читать из файла (на своё усмотрение)
     public static Tank[] GetTanks()
@@ -30,7 +77,7 @@ class Program
                 new Tank(1, "reservoir 1", "aboveground - vertical", 1500, 2000, 1),
                 new Tank(2, "reservoir 2", "aboveground - horizontal", 2500, 3000, 1),
                 new Tank(3, "additional reservoir 24", "aboveground - horizontal", 3000, 3000, 2),
-                new Tank(4, "reservoir 35", "aboveground - vertical", 3000, 3000, 2),
+                new Tank(4, "reservoir 35", "aboveground - vertical", 3000, 3000, 2),   
                 new Tank(5, "reservoir 47", "underground - dw", 4000, 5000, 2),
                 new Tank(6, "reservoir 256", "underwater", 500, 500, 3)
         };
@@ -69,7 +116,7 @@ class Program
         {
             if (tanks[i].Name == tankName)
             {
-                return units[tanks[i].UnitId];
+                return units[tanks[i].UnitId-1];
             }
             else if (tanks[i].Name != tankName & i == 5)
             {
@@ -89,7 +136,8 @@ class Program
             {
                 return factories[i];
             }
-            else { return null; }
+            else if(factories[i].Id != unit.FactoryId & i == 1)
+                { Console.WriteLine("По данному имени не была найдена фабрика"); }
         }
         return null; 
     }
