@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "Name": "GFU-2",
+    "Description": "Gas fractionating unit",
+    "FactoryId": 1
+  },
+  {
+    "Id": 2,
+    "Name": "AVT-6",
+    "Description": "Atmospheric vacuum tube",
+    "FactoryId": 1
+  },
+  {
+    "Id": 3,
+    "Name": "AVT-10",
+    "Description": "Atmospheric vacuum tube",
+    "FactoryId": 2
+  }
+]

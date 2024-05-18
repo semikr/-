@@ -1,0 +1,50 @@
+[
+  {
+    "Id": 1,
+    "Name": "reservoir 1",
+    "Description": "aboveground - vertical",
+    "Volume": 1500,
+    "MaxVolume": 2000,
+    "UnitId": 1
+  },
+  {
+    "Id": 2,
+    "Name": "reservoir 2",
+    "Description": "aboveground - horizontal",
+    "Volume": 2500,
+    "MaxVolume": 3000,
+    "UnitId": 1
+  },
+  {
+    "Id": 3,
+    "Name": "additional reservoir 24",
+    "Description": "aboveground - horizontal",
+    "Volume": 3000,
+    "MaxVolume": 3000,
+    "UnitId": 2
+  },
+  {
+    "Id": 4,
+    "Name": "reservoir 35",
+    "Description": "aboveground - vertical",
+    "Volume": 3000,
+    "MaxVolume": 3000,
+    "UnitId": 2
+  },
+  {
+    "Id": 5,
+    "Name": "reservoir 47",
+    "Description": "underground - dw",
+    "Volume": 4000,
+    "MaxVolume": 5000,
+    "UnitId": 2
+  },
+  {
+    "Id": 6,
+    "Name": "reservoir 256",
+    "Description": "underwater",
+    "Volume": 500,
+    "MaxVolume": 500,
+    "UnitId": 3
+  }
+]
